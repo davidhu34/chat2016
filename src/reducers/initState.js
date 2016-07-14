@@ -4,15 +4,19 @@ import { rooms, messages, lastAccessedRoom } from './testdata';
 
 let msgInit = [];
 messages.map( m =>
-	rooms[m.roomID].messages.push(m);
+	rooms[m.roomID].messages.push({
+		user: 		m.user,
+		message:	m.message
+	})
 );
 
 export const chatDataInit = rooms;
 export const defaultRoom = lastAccessedRoom;
 
 export const centralUIInit = {
+	currentRoom:	defaultRoom,
 	searching:	false,
-	filter：		'',
+	filter:		'',
 	inputTmp:	''
 }
 
@@ -24,5 +28,5 @@ export const roomFilterInit = {
 export const leftUIInit = {
 	currentRoom:	defaultRoom,
 	searching:		false,
-	filter:			filterInit
+	filter:			roomFilterInit
 };

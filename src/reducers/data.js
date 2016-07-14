@@ -32,7 +32,7 @@ const roomData = ( state, action ) => {
             return Object.assign( {}, state,
                 chatData( state.messages, action )
             )
-        case 'NEW_ROOM'
+        case 'NEW_ROOM':
             return {
                 ...actions.room,
                 messages: []
@@ -47,7 +47,7 @@ const data = ( state = chatDataInit, action ) => {
         case 'NEW_MSG':
             let ID = action.message.roomID
             return Object.assign( {}, state,
-                ID: roomData( state[ID], action )
+                { ID: roomData( state[ID], action ) }
             )
         case 'NEW_ROOM':
             return {

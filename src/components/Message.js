@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react'
 
-const Message = ({ message, float }) => (
-    <li style = {{ float, color }} >
-        {text}
+const Message = ({ message, user, float }) => (
+    <li style = {{ float }} >
+        { user + ': ' + text }
     </li>
 )
 
 Message.propTypes = {
     message: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
     float: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
 }
 
 export default Message

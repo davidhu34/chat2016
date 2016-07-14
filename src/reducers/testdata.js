@@ -48,22 +48,21 @@ export const messages = [
 ];
 
 export const rooms = {
-
 	'0': {
 		name: '',
 		users: [ 'david', 'luke' ],
-		messeges: []
-	};
+		messages: []
+	},
 	'1': {
 		name: '',
 		users: [ 'david', 'han' ],
-		messeges: []
-	};
+		messages: []
+	},
 	'2': {
 		name: 'rebels!',
 		users: [ 'david', 'han', 'luke' ],
-		messeges: []
-	};
+		messages: []
+	}
 };
 
 export const lastAccessedRoom = '2';
