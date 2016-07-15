@@ -1,6 +1,6 @@
-import { centralUIInit, leftUIInit, roomFilterInit } from './initState'
+import { chatAreaUIInit, roomListUIInit, roomFilterInit } from './initState'
 
-const centralUI = ( state = centralUIInit, action ) => {
+const chatAreaUI = ( state = chatAreaUIInit, action ) => {
     switch ( action.type ) {
         case 'TOGGLE_SEARCH_MSG':
             return Object.assign( {}, state,
@@ -17,7 +17,7 @@ const centralUI = ( state = centralUIInit, action ) => {
             });
         case 'NEW_ROOM':
         case 'NEW_MSG':
-            return centralUIInit;
+            return chatAreaUIInit;
 
         default:
             return state;
@@ -27,7 +27,7 @@ const centralUI = ( state = centralUIInit, action ) => {
 const editFilter = ( filter, entry ) =>
 	Object.assign( {}, filter, entry );
 
-const leftUI = ( state = leftUIInit, action ) => {
+const roomListUI = ( state = roomListUIInit, action ) => {
 	switch ( action.type ) {
 		case 'TOGGLE_SEARCH_ROOM':
 			return Object.assign( {}, state,
@@ -47,6 +47,6 @@ const leftUI = ( state = leftUIInit, action ) => {
 }
 
 export {
-    centralUI,
-    leftUI
+    chatAreaUI,
+    roomListUI
 }

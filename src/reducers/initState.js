@@ -13,7 +13,7 @@ messages.map( m =>
 export const chatDataInit = rooms;
 export const defaultRoom = lastAccessedRoom;
 
-export const centralUIInit = {
+export const chatAreaUIInit = {
 	currentRoom:	defaultRoom,
 	searching:	false,
 	filter:		'',
@@ -25,7 +25,7 @@ export const roomFilterInit = {
 	status:	'all',
 	type:	'all',
 };
-export const leftUIInit = {
+export const roomListInit = {
 	currentRoom:	defaultRoom,
 	searching:		false,
 	filter:			roomFilterInit
