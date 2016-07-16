@@ -12,7 +12,6 @@ const chatAreaUI = ( state = chatAreaUIInit, action ) => {
             );
         case 'CHANGE_ROOM':
             return Object.assign( {}, state, {
-                inputTmp:       action.inputTmp,
                 currentRoom:    action.roomID
             });
         case 'NEW_ROOM':
@@ -27,7 +26,10 @@ const chatAreaUI = ( state = chatAreaUIInit, action ) => {
 const editFilter = ( filter, entry ) =>
 	Object.assign( {}, filter, entry );
 
-const roomListUI = ( state = roomListUIInit, action ) => {
+const roomListUI = (
+    state = { ...roomListUIInit, filter: roomFilterInit },
+    action
+ ) => {
 	switch ( action.type ) {
 		case 'TOGGLE_SEARCH_ROOM':
 			return Object.assign( {}, state,

@@ -1,6 +1,9 @@
 import React from 'react'
+import ChatAreaTitle from './ChatAreaTitle'
+import CurrentMsgList from './CurrentMsgList'
+import InputArea from './InputArea'
 
-const ChatArea () => (
+const ChatArea = () => (
   <div>
     <ChatAreaTitle />
     <CurrentMsgList />

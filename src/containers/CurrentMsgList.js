@@ -1,16 +1,16 @@
 import { connect } from 'react-redux'
 import MessageList from '../components/MessageList'
 
-const getChatMessages = ( messages ) => {
-    return messages.map( m => ({
+const getChatMessages = ( room ) => {
+    return room.messages.map( m => ({
             ...m,
             float: ( m.user !== 'david' )? 'left': 'right'
     }))
 }
 
-const mapStateToProps = ( state, ownProps ) => {
+const mapStateToProps = ( state ) => {
     return {
-        messages: getChatMessages( state.data[ownProps.currentRoom] )
+        messages: getChatMessages( state.data[state.chatAreaUI.currentRoom] )
     }
 }
 

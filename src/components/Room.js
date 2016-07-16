@@ -6,14 +6,16 @@ const Room = ({ onClick, title, preview, lastUpdate, isCurrentRoom }) => {
     ) : (
         <span/>
     )
+    let room = ( isCurrentRoom )? (
+        <b> {title} </b>
+    ) : (
+        <span>{title}</span>
+    )
+
     return (
         <li onClick = { onClick }
         >
-            {( isCurrentRoom )? (
-                <b> {title} </b>
-            ) : (
-                {title}
-            )}
+            { room }
             { roomInfo }
         </li>
     )

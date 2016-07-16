@@ -15,8 +15,7 @@ export const newRoom = ( room ) => {
 export const changeRoom = ( roomID, inputTmp ) => {
 	return {
 		type: 'CHANGE_ROOM',
-		roomID,
-		inputTmp
+		roomID
 	}
 }
 

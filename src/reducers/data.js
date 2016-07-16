@@ -55,8 +55,8 @@ const data = ( state = chatDataInit, action ) => {
                 roomTotal: roomData( undefined, action )
             }
         default:
-            return state;
+            return state
     }
 }
 
-export default data;
+export default data

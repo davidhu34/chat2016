@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
+import RoomListArea from '../containers/RoomListArea'
+import ChatArea from '../containers/ChatArea'
 
 export default class App extends Component {
-  render() {
-    return (
-      <h1>Hello, Fuckers</h1>
-
-    );
-  }
+    render () {
+        return (
+            <div>
+                <h1>Hello, Fuckers</h1>
+                <div>
+                    <RoomListArea />
+                    <ChatArea />
+                </div>
+            </div>
+        )
+    }
 }
-import React from 'react'
-import Footer from './Footer'
-import AddTodo from '../containers/AddTodo'
-import VisibleTodoList from '../containers/VisibleTodoList'
-
-const App = () => (
-  <div>
-    <RoomListArea />
-    <ChatArea />
-  </div>
-)
-
-export default App

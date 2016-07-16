@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Message from './Message'
 
-const MessageList = ({ messges }) => (
+const MessageList = ({ messages }) => (
     <ul>
         { messages.map( msg =>
             <Message

@@ -1,33 +1,31 @@
-// first datafetch
-// testdata
 import { rooms, messages, lastAccessedRoom } from './testdata';
 
-let msgInit = [];
+let msgInit = []
 let chatData = rooms
+
 messages.map( m =>
 	chatData[m.roomID].messages.push({
 		user: 		m.user,
 		message:	m.message
 	})
-);
+)
 
 export const chatDataInit = chatData;
+
 export const defaultRoom = lastAccessedRoom;
 
 export const chatAreaUIInit = {
-	currentRoom:	defaultRoom,
+	currentRoom:	lastAccessedRoom,
 	searching:	false,
-	filter:		'',
-	inputTmp:	''
+	filter:		''
 }
 
 export const roomFilterInit = {
 	string:	'',
 	status:	'all',
-	type:	'all',
-};
-export const roomListInit = {
-	currentRoom:	defaultRoom,
-	searching:		false,
-	filter:			roomFilterInit
-};
+	type:	'all'
+}
+
+export const roomListUIInit = {
+	currentRoom:	lastAccessedRoom
+}
