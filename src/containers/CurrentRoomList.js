@@ -41,7 +41,6 @@ const getRooms = ( roomsData, ui ) => {
 }
 
 const mapStateToProps = ( state ) => {
-    console.log(state)
     return {
         rooms: getRooms( state.data, state.roomListUI )
     }

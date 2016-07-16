@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
 import Room from './Room'
 
-const RoomList = ({ rooms }) => (
+const RoomList = ({ rooms, onRoomClick }) => (
     <ul>
         { rooms.map( r =>
             <Room
                 key={ r.roomID }
                 { ...r }
                 onClick = { () =>
-                    onRoomClick( r.id )
+                    onRoomClick( r.roomID )
                 }
             />
         )}
