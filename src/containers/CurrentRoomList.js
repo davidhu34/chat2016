@@ -17,11 +17,11 @@ import RoomList from '../components/RoomList'
 const getRooms = ( rooms, currnetRoom, searching ) => {
     return rooms.map( r => {
         let room = {
+            roomID: r.roomID,
             title: ( r.name !== '' )? name : (
                 otherUser(r.users)
             )
         }
-
         return ( searching )? (
             room
         ) : ({

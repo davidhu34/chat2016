@@ -22,9 +22,9 @@ const Room = ({ onClick, title, preview, lastUpdate, isCurrentRoom }) => {
 Room.propTypes = {
     onClick: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    lastUpdate: PropTypes.string.isRequired,
-    isCurrentRoom: PropTypes.bool.isRequired
+    preview: PropTypes.string,
+    lastUpdate: PropTypes.string,
+    isCurrentRoom: PropTypes.bool
 }
 
 export default Room

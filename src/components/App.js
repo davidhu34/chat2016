@@ -15,8 +15,8 @@ import VisibleTodoList from '../containers/VisibleTodoList'
 
 const App = () => (
   <div>
-    <SideBoard />
-    <MainBoard />
+    <RoomListArea />
+    <ChatArea />
   </div>
 )
 
