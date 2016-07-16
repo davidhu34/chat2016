@@ -7,6 +7,7 @@ const ChatArea = () => (
   <div>
     <ChatAreaTitle />
     <CurrentMsgList />
+    <br/>
     <InputArea />
   </div>
 )

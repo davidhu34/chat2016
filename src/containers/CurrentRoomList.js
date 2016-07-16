@@ -18,12 +18,11 @@ const getRooms = ( roomsData, ui ) => {
     Object.keys( roomsData ).map( id => {
         let r = roomsData[id]
         let room = {
-            roomID: r.roomID,
-            title: ( r.name !== '' )? name : (
+            roomID: id,
+            title: ( r.name !== '' )? r.name : (
                 otherUser(r.users)
             )
         }
-
         if ( searching ) {
             if ( room.title.indexOf( filterText ) >= 0
             ||  r.name.indexOf( filterText ) >= 0  )
@@ -34,7 +33,7 @@ const getRooms = ( roomsData, ui ) => {
                 preview: r.messages[ r.messages.length - 1 ].message,
                 lastUpdate: 'sometime',
                 isCurrentRoom:
-                    ( r.roomID === ui.currentRoom )? true: false
+                    ( id === ui.currentRoom )? true: false
             })
         }
     })

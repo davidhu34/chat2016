@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 
 const Message = ({ message, user, float }) => (
-    <li style = {{ float }} >
+    <li
+    //    style = {{ float }}
+    >
         { user + ': ' + message }
     </li>
 )
