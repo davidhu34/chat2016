@@ -5,10 +5,7 @@ const RoomList = ({ rooms }) => (
     <ul>
         { rooms.map( r =>
             <Room
-                key = { r.roomID }
-                title = { r.title }
-                preview = { r.preview }
-                lastUpdate = { r.lastUpdate }
+                {...r}
                 onClick = { () =>
                     onRoomClick( r.id )
                 }

@@ -3,14 +3,15 @@
 import { rooms, messages, lastAccessedRoom } from './testdata';
 
 let msgInit = [];
+let chatData = rooms
 messages.map( m =>
-	rooms[m.roomID].messages.push({
+	chatData[m.roomID].messages.push({
 		user: 		m.user,
 		message:	m.message
 	})
 );
 
-export const chatDataInit = rooms;
+export const chatDataInit = chatData;
 export const defaultRoom = lastAccessedRoom;
 
 export const chatAreaUIInit = {

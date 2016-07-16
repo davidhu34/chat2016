@@ -14,24 +14,36 @@ import { connect } from 'react-redux'
 import { changeRoom } from '../actions/index'
 import RoomList from '../components/RoomList'
 
-const getRooms = ( data, ui ) => {
-    if ( ui.)
-    return data[ui.currentRoom]
-        .messages.map( m => {
-            ...m,
-            float: ( m.user !== 'david' )? 'left': 'right'
+const getRooms = ( rooms, currnetRoom, searching ) => {
+    return rooms.map( r => {
+        let room = {
+            title: ( r.name !== '' )? name : (
+                otherUser(r.users)
+            )
+        }
+
+        return ( searching )? (
+            room
+        ) : ({
+            ...room,
+            preview: r.messages[ r.messages.length - 1 ],
+            lastUpdate: 'sometime',
+            isCurrentRoom:
+                ( r.roomID === currentRoom )? true: false
+        })
     })
 }
 
-const mapStateToProps = ( state, ownProps.ui ) => {
+const mapStateToProps = ( state, ownProps ) => {
     return {
-        rooms: getRooms( state.data, ownProps.ui )
+        rooms: getRooms( state.data,
+            ownProps.currentRoom, ownProps.searching )
     }
 }
 
-const mapDispatchToProps = ( dispatch, ownProps ) => {
+const mapDispatchToProps = ( dispatch ) => {
     return {
-        onRoomClick: dispatch( ownProps.onRoomClick )
+        onRoomClick: dispatch( changeRoom )
     }
 }
 
