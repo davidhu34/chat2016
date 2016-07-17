@@ -29,9 +29,9 @@ const chatData = ( state, action ) => {
 const roomData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
-            return Object.assign( {}, state,
-                chatData( state.messages, action )
-            )
+            return Object.assign( {}, state, {
+                messages: chatData( state.messages, action )
+            })
         case 'NEW_ROOM':
             return {
                 ...actions.room,
@@ -45,10 +45,10 @@ const roomData = ( state, action ) => {
 const data = ( state = chatDataInit, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
-            let ID = action.message.roomID
-            return Object.assign( {}, state,
-                { ID: roomData( state[ID], action ) }
-            )
+            let id = action.message.roomID
+            let newState = state
+            newState[id] = roomData( state[id], action )
+            return newState
         case 'NEW_ROOM':
             return {
                 ...state,

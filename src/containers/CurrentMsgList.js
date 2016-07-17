@@ -9,7 +9,6 @@ const getChatMessages = ( room ) => {
 }
 
 const mapStateToProps = ( state ) => {
-    console.log(state)
     return {
         messages: getChatMessages( state.data[state.chatAreaUI.currentRoom] )
     }
