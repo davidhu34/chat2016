@@ -29,3 +29,7 @@ export const roomFilterInit = {
 export const roomListUIInit = {
 	currentRoom:	lastAccessedRoom
 }
+
+export const modalUIInit = {
+	currentModal: ''
+}

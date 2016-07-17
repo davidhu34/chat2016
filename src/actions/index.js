@@ -5,9 +5,16 @@ export const newMessage = ( message ) => {
 	}
 }
 
-export const newRoom = ( room ) => {
+export const newRoom = () => {
 	return {
 		type: 'NEW_ROOM',
+		modal: 'create room'
+	}
+}
+
+export const createRoom = ( room ) => {
+	return {
+		type: 'CREATE_ROOM',
 		room
 	}
 }
@@ -19,21 +26,6 @@ export const changeRoom = ( roomID, inputTmp ) => {
 	}
 }
 
-// centralUI
-export const toggleSearchMessage = () => {
-	return {
-		type: 'TOGGLE_SEARCH_MSG'
-	}
-}
-
-export const filterMessage = ( filter ) => {
-	return {
-		type: 'FILTER_MSG',
-		filter
-	}
-}
-
-// leftUI
 export const changeFilter = ( filter ) => {
 	return {
 		type: 'CHANGE_FILTER',

@@ -14,7 +14,6 @@ const RoomListSearch = ({ filter, changeFilter }) => {
                     input = ref
                 }}
                 onChange={ () => {
-                    console.log(input)
                     changeFilter({
                         string:input.value
                     })

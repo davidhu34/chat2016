@@ -1,26 +1,22 @@
-import { chatAreaUIInit, roomListUIInit, roomFilterInit } from './initState'
+import { chatAreaUIInit, roomListUIInit, roomFilterInit, modalUIInit } from './initState'
 
 const chatAreaUI = ( state = chatAreaUIInit, action ) => {
     switch ( action.type ) {
-        case 'FILTER_MSG':
-            return Object.assign( {}, state,
-                { filter: action.filter }
-            );
         case 'CHANGE_ROOM':
-            return Object.assign( {}, state, {
-                currentRoom:    action.roomID
-            });
-        case 'NEW_ROOM':
+			return {
+                ...state,
+				currentRoom: action.roomID
+			}
+        case 'CREATE_ROOM':
+            return {
+                ...state,
+                currentRoom: action.room.roomID
+            }
         case 'NEW_MSG':
-            return chatAreaUIInit;
-
         default:
-            return state;
+            return state
     }
 }
-
-const editFilter = ( filter, entry ) =>
-	Object.assign( {}, filter, entry );
 
 const roomListUI = (
     state = { ...roomListUIInit, filter: roomFilterInit },
@@ -28,19 +24,42 @@ const roomListUI = (
  ) => {
 	switch ( action.type ) {
 		case 'CHANGE_FILTER':
-			return Object.assign( {}, state, {
-				filter: editFilter( state.filter, action.filter )
-			});
+			return {
+                ...state,
+				filter: Object.assign( {},
+                    state.filter, action.filter
+                )
+			}
 		case 'CHANGE_ROOM':
-			return Object.assign( {}, state,
-				{ currentRoom: action.roomID }
-			);
+			return {
+                ...state,
+				currentRoom: action.roomID
+			}
+        case 'CREATE_ROOM':
+            return {
+                ...state,
+                currentRoom: action.room.roomID
+            }
 		default:
 			return state;
 	}
+
+}
+const modalUI = ( state = modalUIInit, action ) => {
+    switch ( action.type ) {
+        case 'NEW_ROOM':
+            return {
+                currentModal:   action.modal
+            }
+        case 'CREATE_ROOM':
+            return modalUIInit
+        default:
+            return state
+    }
 }
 
 export {
     chatAreaUI,
-    roomListUI
+    roomListUI,
+    modalUI
 }

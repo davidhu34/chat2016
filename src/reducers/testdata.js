@@ -49,16 +49,19 @@ export const messages = [
 
 export const rooms = {
 	'0': {
+		roomID: '0',
 		name: '',
 		users: [ 'david', 'luke' ],
 		messages: []
 	},
 	'1': {
+		roomID: '1',
 		name: '',
 		users: [ 'david', 'han' ],
 		messages: []
 	},
 	'2': {
+		roomID: '2',
 		name: 'rebels!',
 		users: [ 'david', 'han', 'luke' ],
 		messages: []

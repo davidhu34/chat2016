@@ -17,6 +17,10 @@ const messageData = ( state, action ) => {
 const chatData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
+            console.log([
+                ...state,
+                messageData( undefined, action )
+            ])
             return [
                 ...state,
                 messageData( undefined, action )
@@ -29,12 +33,13 @@ const chatData = ( state, action ) => {
 const roomData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
-            return Object.assign( {}, state, {
-                messages: chatData( state.messages, action )
-            })
-        case 'NEW_ROOM':
             return {
-                ...actions.room,
+                ...state,
+                messages: chatData( state.messages, action )
+            }
+        case 'CREATE_ROOM':
+            return {
+                ...action.room,
                 messages: []
             }
         default:
@@ -43,17 +48,18 @@ const roomData = ( state, action ) => {
 }
 
 const data = ( state = chatDataInit, action ) => {
+    let newState = {...state}
+
     switch ( action.type ) {
         case 'NEW_MSG':
             let id = action.message.roomID
-            let newState = state
             newState[id] = roomData( state[id], action )
             return newState
-        case 'NEW_ROOM':
-            return {
-                ...state,
-                roomTotal: roomData( undefined, action )
-            }
+        case 'CREATE_ROOM':
+            newState['3'] = roomData( {
+                roomID: '3'
+            }, action )
+            return newState
         default:
             return state
     }

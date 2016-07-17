@@ -33,9 +33,12 @@ const getRooms = ( roomsData, ui ) => {
                 rooms.push(room)
             }
         } else {
+            let lastMsg = ( r.messages.length === 0 )? '' : (
+                r.messages[ r.messages.length - 1 ].message
+            )
             rooms.push({
                 ...room,
-                preview: r.messages[ r.messages.length - 1 ].message,
+                preview: lastMsg,
                 lastUpdate: 'sometime',
                 isCurrentRoom:
                     ( id === ui.currentRoom )? true: false
