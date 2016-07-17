@@ -1,16 +1,22 @@
 import React, { PropTypes } from 'react'
 
 const Room = ({ onClick, title, preview, lastUpdate, isCurrentRoom }) => {
-    let roomInfo = ( preview && lastUpdate )? (
-        <span> {preview} {lastUpdate} </span>
-    ) : (
-        <span/>
-    )
+    const optionalInfo = (info) => (
+        ( info )? (
+            <span> {info} </span>
+        ) : (
+            <span/>
+    ))
+
     let room = ( isCurrentRoom )? (
         <b> {title} </b>
     ) : (
         <span>{title}</span>
     )
+    let roomInfo = ( <div>
+        {optionalInfo(preview)}
+        {optionalInfo(lastUpdate)}
+    </div> )
 
     return (
         <li onClick = { onClick }
