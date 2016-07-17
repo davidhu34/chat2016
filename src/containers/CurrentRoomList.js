@@ -12,7 +12,7 @@ const otherUser = ( users ) => {
 }
 
 const getRooms = ( roomsData, ui ) => {
-    let filterText = ui.filter.string
+    let filterText = ui.filter.string.toLowerCase()
     let searching = ( filterText === '' )? false: true
 
     let rooms = []
@@ -26,7 +26,7 @@ const getRooms = ( roomsData, ui ) => {
         }
 
         if ( searching ) {
-            if ( r.name.indexOf( filterText ) >= 0
+            if ( r.name.toLowerCase().indexOf( filterText ) >= 0
             || others.indexOf( filterText ) >= 0 ) {
                 if ( hasName )
                     room.preview = others
