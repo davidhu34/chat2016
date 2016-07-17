@@ -8,7 +8,7 @@ const InputArea = ({ currentRoom, newMessage }) => {
         <div>
             <textarea
                 placeholder="message..."
-                ref={ (ref) => {
+                ref={ ref => {
                     input = ref
                 }}
             >
@@ -31,8 +31,10 @@ const InputArea = ({ currentRoom, newMessage }) => {
 }
 
 
-export default connect( state => ({
-    currentRoom: state.chatAreaUI.currentRoom
-}), dispatch => ({
-    newMessage: (msg) => dispatch( newMessage(msg) )
-}))( InputArea )
+export default connect(
+    state => ({
+        currentRoom: state.chatAreaUI.currentRoom
+    }), dispatch => ({
+        newMessage: (msg) => dispatch( newMessage(msg) )
+    })
+)( InputArea )

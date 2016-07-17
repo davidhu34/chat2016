@@ -34,13 +34,7 @@ export const filterMessage = ( filter ) => {
 }
 
 // leftUI
-export const toggleSearchRoom = () => {
-	return {
-		type: 'TOGGLE_SEARCH_ROOM'
-	}
-}
-
-export const changeLeftUIFilter = ( filter ) => {
+export const changeFilter = ( filter ) => {
 	return {
 		type: 'CHANGE_FILTER',
 		filter
