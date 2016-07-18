@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react'
 
-const Room = ({ onClick, title, preview, lastUpdate, isCurrentRoom }) => {
+const Room = ({
+    onClick, title,
+    preview = null, lastUpdate = null, isCurrentRoom = false
+}) => {
     const optionalInfo = (info) => (
         ( info )? (
             <span> {info} </span>
-        ) : (
-            <span/>
-    ))
+        ) : <span/>
+    )
 
     let room = ( isCurrentRoom )? (
         <b> {title} </b>

@@ -1,25 +1,7 @@
-import { chatAreaUIInit, roomListUIInit, roomFilterInit, modalUIInit } from './initState'
+import {UIInit, roomFilterInit } from './initState'
 
-const chatAreaUI = ( state = chatAreaUIInit, action ) => {
-    switch ( action.type ) {
-        case 'CHANGE_ROOM':
-			return {
-                ...state,
-				currentRoom: action.roomID
-			}
-        case 'CREATE_ROOM':
-            return {
-                ...state,
-                currentRoom: action.room.roomID
-            }
-        case 'NEW_MSG':
-        default:
-            return state
-    }
-}
-
-const roomListUI = (
-    state = { ...roomListUIInit, filter: roomFilterInit },
+const UI = (
+    state = { ...UIInit, filter: roomFilterInit },
     action
  ) => {
 	switch ( action.type ) {
@@ -37,29 +19,32 @@ const roomListUI = (
 			}
         case 'CREATE_ROOM':
             return {
+                currentRoom: action.roomID,
+                currnetModal: '',
+                order: [
+                    action.roomID,
+                    ...state.order
+                ]
+            }
+        case 'NEW_ROOM':
+            return {
                 ...state,
-                currentRoom: action.room.roomID
+                currentModal: action.modal
+            }
+        case 'SEARCH_ROOM_DISABLE':
+            return {
+                ...state,
+                searchingRoom: false
+            }
+        case 'SEARCH_ROOM_ENABLE':
+            return {
+                ...state,
+                searchingRoom: true
             }
 		default:
 			return state;
 	}
 
 }
-const modalUI = ( state = modalUIInit, action ) => {
-    switch ( action.type ) {
-        case 'NEW_ROOM':
-            return {
-                currentModal:   action.modal
-            }
-        case 'CREATE_ROOM':
-            return modalUIInit
-        default:
-            return state
-    }
-}
 
-export {
-    chatAreaUI,
-    roomListUI,
-    modalUI
-}
+export default chatUI

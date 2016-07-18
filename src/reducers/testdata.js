@@ -1,71 +1,88 @@
-export const messages = [
+import moment from 'moment'
+
+export const msgs = [
 	{
-		roomID: '0',
-		user: 'david',
-		message: 'hi, luke'
-	},
-	{
+		msgID:	'8',
+		time:	moment().subtract( 12, 'minutes'),
 		roomID: '0',
 		user: 'luke',
 		message: 'hey what\'s up'
 	},
 	{
-		roomID: '1',
-		user: 'han',
-		message: 'yo david'
-	},
-	{
-		roomID: '1',
+		msgID:	'0',
+		time:	moment().subtract( 15, 'minutes'),
+		roomID: '0',
 		user: 'david',
-		message: 'what is it?'
+		message: 'hi, luke'
 	},
 	{
+		msgID:	'1',
+		time:	moment().subtract( 7, 'minutes'),
 		roomID: '1',
 		user: 'han',
 		message: 'u ugly af'
 	},
 	{
-		roomID: '2',
-		user: 'han',
-		message: 'hey guys'
-	},
-	{
-		roomID: '2',
+		msgID:	'2',
+		time:	moment().subtract( 19, 'minutes'),
+		roomID: '1',
 		user: 'david',
-		message: 'go away'
+		message: 'what is it?'
 	},
 	{
+		msgID:	'3',
+		time:	moment().subtract( 20, 'minutes'),
+		roomID: '1',
+		user: 'han',
+		message: 'yo david'
+	},
+	{
+		msgID:	'4',
+		time:	moment().subtract( 1, 'minutes'),
 		roomID: '2',
 		user: 'david',
 		message: 'so dumb'
 	},
 	{
+		msgID:	'5',
+		time:	moment().subtract( 58, 'minutes'),
 		roomID: '2',
 		user: 'luke',
 		message: 'much stupid'
 	},
-
+	{
+		msgID:	'6',
+		time:	moment().subtract( 59, 'minutes'),
+		roomID: '2',
+		user: 'david',
+		message: 'go away'
+	},
+	{
+		msgID:	'7',
+		time:	moment().subtract( 60, 'minutes'),
+		roomID: '2',
+		user: 'han',
+		message: 'hey guys'
+	}
 ];
 
-export const rooms = {
-	'0': {
-		roomID: '0',
-		name: '',
-		users: [ 'david', 'luke' ],
-		messages: []
-	},
-	'1': {
-		roomID: '1',
-		name: '',
-		users: [ 'david', 'han' ],
-		messages: []
-	},
-	'2': {
+export const rms = [
+	{
 		roomID: '2',
 		name: 'rebels!',
 		users: [ 'david', 'han', 'luke' ],
-		messages: []
+		messages: [ '4', '5', '6', '7' ]
+	},
+	{
+		roomID: '1',
+		name: '',
+		users: [ 'david', 'han' ],
+		messages: [ '1', '2', '3' ]
+	},
+	{
+		roomID: '0',
+		name: '',
+		users: [ 'david', 'luke' ],
+		messages: [ '8', '0' ]
 	}
-};
-
-export const lastAccessedRoom = '2';
+]

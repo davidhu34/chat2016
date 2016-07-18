@@ -1,7 +1,7 @@
 export const newMessage = ( message ) => {
 	return {
 		type: 'NEW_MSG',
-		message
+		...message
 	}
 }
 
@@ -15,7 +15,7 @@ export const newRoom = () => {
 export const createRoom = ( room ) => {
 	return {
 		type: 'CREATE_ROOM',
-		room
+		...room
 	}
 }
 

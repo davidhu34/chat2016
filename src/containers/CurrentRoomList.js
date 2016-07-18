@@ -11,13 +11,13 @@ const otherUser = ( users ) => {
     return str.substr( 0, str.length - 2 )
 }
 
-const getRooms = ( roomsData, ui ) => {
+const getRooms = ( data, ui ) => {
     let filterText = ui.filter.string.toLowerCase()
-    let searching = ( filterText === '' )? false: true
+    let { order, searchingRoom } = ui
 
     let rooms = []
-    Object.keys( roomsData ).map( id => {
-        let r = roomsData[id]
+    order.map( id => {
+        let r = data[id]
         let others = otherUser(r.users)
         let hasName = ( r.name !== '' )
         let room = {
@@ -25,7 +25,7 @@ const getRooms = ( roomsData, ui ) => {
             title: hasName? r.name : others
         }
 
-        if ( searching ) {
+        if ( searchingRoom ) {
             if ( r.name.toLowerCase().indexOf( filterText ) >= 0
             || others.indexOf( filterText ) >= 0 ) {
                 if ( hasName )
@@ -33,13 +33,12 @@ const getRooms = ( roomsData, ui ) => {
                 rooms.push(room)
             }
         } else {
-            let lastMsg = ( r.messages.length === 0 )? '' : (
-                r.messages[ r.messages.length - 1 ].message
-            )
+            if ( r.messages.length !== 0 ) {
+                room.preview = r.messages[0].message
+                room.lastUpdate = r.messages[0].time.format('LT')
+            }
             rooms.push({
                 ...room,
-                preview: lastMsg,
-                lastUpdate: 'sometime',
                 isCurrentRoom:
                     ( id === ui.currentRoom )? true: false
             })
@@ -50,7 +49,7 @@ const getRooms = ( roomsData, ui ) => {
 
 const mapStateToProps = ( state ) => {
     return {
-        rooms: getRooms( state.data, state.roomListUI )
+        rooms: getRooms( state.chatData, state.chatUI )
     }
 }
 

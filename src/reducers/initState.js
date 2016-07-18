@@ -1,24 +1,24 @@
-import { rooms, messages, lastAccessedRoom } from './testdata';
+import { rms, msgs } from './testdata';
+console.log(msgs)
+let chatData = {}
 
-let msgInit = []
-let chatData = rooms
+rms.map( r => {
+	chatData[r.roomID.toString()] = {
+		...r,
+		messages: [],
+		users: r.users.filter( u => ( u !== 'david') )
+	}
+})
 
-messages.map( m =>
-	chatData[m.roomID].messages.push({
-		user: 		m.user,
-		message:	m.message
-	})
-)
+console.log(chatData)
+msgs.map( m => {
+	console.log(m.roomID)
+	console.log(chatData[m.roomID.toString()])
+	chatData['0'].messages
+		.unshift( m )
+})
 
 export const chatDataInit = chatData;
-
-export const defaultRoom = lastAccessedRoom;
-
-export const chatAreaUIInit = {
-	currentRoom:	lastAccessedRoom,
-	searching:	false,
-	filter:		''
-}
 
 export const roomFilterInit = {
 	string:	'',
@@ -26,10 +26,9 @@ export const roomFilterInit = {
 	type:	'all'
 }
 
-export const roomListUIInit = {
-	currentRoom:	lastAccessedRoom
-}
-
-export const modalUIInit = {
-	currentModal: ''
+export const UIInit = {
+	currentRoom: '2',
+	currentModal: '',
+	searchingRoom: false,
+	order: [ '2', '1', '0' ]
 }

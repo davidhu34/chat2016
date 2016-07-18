@@ -1,30 +1,14 @@
-import { chatDataInit, defaultRoom } from './initState';
-
-let roomTotal = Object.keys(chatDataInit).length;
+import { chatDataInit } from './initState';
+//let roomTotal = Object.keys(chatDataInit).length;
 
 const messageData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
             return {
-                user:       action.message.user,
-                message:    action.message.message
+                time: action.time,
+                user: action.user,
+                message: action.message
             }
-        default:
-            return state
-    }
-}
-
-const chatData = ( state, action ) => {
-    switch ( action.type ) {
-        case 'NEW_MSG':
-            console.log([
-                ...state,
-                messageData( undefined, action )
-            ])
-            return [
-                ...state,
-                messageData( undefined, action )
-            ]
         default:
             return state
     }
@@ -35,7 +19,10 @@ const roomData = ( state, action ) => {
         case 'NEW_MSG':
             return {
                 ...state,
-                messages: chatData( state.messages, action )
+                messages: [
+                    messageData( null, action ),
+                    ...state.messages
+                ]
             }
         case 'CREATE_ROOM':
             return {
@@ -47,22 +34,23 @@ const roomData = ( state, action ) => {
     }
 }
 
-const data = ( state = chatDataInit, action ) => {
-    let newState = {...state}
-
+const chatData = ( state = chatDataInit, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
-            let id = action.message.roomID
-            newState[id] = roomData( state[id], action )
-            return newState
-        case 'CREATE_ROOM':
-            newState['3'] = roomData( {
-                roomID: '3'
-            }, action )
-            return newState
+            return {
+                ...state,
+                [ action.roomID ]:
+                    roomData( state[action.roomID], action )
+            }
+        case 'NEW_ROOM':
+            return {
+                ...state,
+                [ action.roomID ]:
+                    roomData( null, action )
+            }
         default:
             return state
     }
 }
 
-export default data
+export default chatData

@@ -25,7 +25,7 @@ const RoomListSearch = ({ filter, changeFilter }) => {
 
 export default connect(
     state => ({
-        filter: state.roomListUI.filter
+        filter: state.chatUI.filter
     }), dispatch => ({
         changeFilter: (filter) => dispatch( changeFilter(filter) )
     })

@@ -17,6 +17,7 @@ const InputArea = ({ currentRoom, newMessage }) => {
                 onClick={ () => {
                     let message = {
                         roomID: currentRoom,
+                        time: new Date(),
                         user: 'david',
                         message: input.value
                     }
@@ -33,7 +34,7 @@ const InputArea = ({ currentRoom, newMessage }) => {
 
 export default connect(
     state => ({
-        currentRoom: state.chatAreaUI.currentRoom
+        currentRoom: state.chatUI.currentRoom
     }), dispatch => ({
         newMessage: (msg) => dispatch( newMessage(msg) )
     })
