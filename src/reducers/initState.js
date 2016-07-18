@@ -23,9 +23,9 @@ export const roomFilterInit = {
 	type:	'all'
 }
 
-export const UIInit = {
+export const chatUIInit = {
 	currentRoom: '2',
 	currentModal: '',
 	searchingRoom: false,
-	order: [ '2', '1', '0' ]
+	order: [ '2', '1', '3' ]
 }

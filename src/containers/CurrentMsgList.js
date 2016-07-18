@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import MessageList from '../components/MessageList'
 
-const getChatMessages = ( room ) => {
+const getChatMessages = ( state ) => {
     return state
         .chatData[state.chatUI.currentRoom]
         .messages

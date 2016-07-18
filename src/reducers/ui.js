@@ -1,10 +1,19 @@
-import {UIInit, roomFilterInit } from './initState'
+import { chatUIInit, roomFilterInit } from './initState'
 
-const UI = (
-    state = { ...UIInit, filter: roomFilterInit },
+const chatUI = (
+    state = { ...chatUIInit, roomFilter: roomFilterInit },
     action
  ) => {
 	switch ( action.type ) {
+        case 'NEW_MSG':
+            return {
+                ...state,
+                order: [
+                    action.roomID,
+                    ...state.order.filter(
+                        r => ( r !== action.roomID)
+                )]
+            }
 		case 'CHANGE_FILTER':
 			return {
                 ...state,

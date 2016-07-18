@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import { connect } from 'react-redux'
 import { newMessage } from '../actions/index'
@@ -17,7 +18,7 @@ const InputArea = ({ currentRoom, newMessage }) => {
                 onClick={ () => {
                     let message = {
                         roomID: currentRoom,
-                        time: new Date(),
+                        time: moment(),
                         user: 'david',
                         message: input.value
                     }

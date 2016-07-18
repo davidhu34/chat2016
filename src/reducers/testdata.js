@@ -4,14 +4,14 @@ export const msgs = [
 	{
 		msgID:	'8',
 		time:	moment().subtract( 12, 'minutes'),
-		roomID: '0',
+		roomID: '3',
 		user: 'luke',
 		message: 'hey what\'s up'
 	},
 	{
 		msgID:	'0',
 		time:	moment().subtract( 15, 'minutes'),
-		roomID: '0',
+		roomID: '3',
 		user: 'david',
 		message: 'hi, luke'
 	},
@@ -80,7 +80,7 @@ export const rms = [
 		messages: [ '1', '2', '3' ]
 	},
 	{
-		roomID: '0',
+		roomID: '3',
 		name: '',
 		users: [ 'david', 'luke' ],
 		messages: [ '8', '0' ]

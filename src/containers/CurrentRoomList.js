@@ -12,13 +12,14 @@ const otherUser = ( users ) => {
 }
 
 const getRooms = ( data, ui ) => {
-    let filterText = ui.filter.string.toLowerCase()
+    let filterText = ui.roomFilter.string.toLowerCase()
     let { order, searchingRoom } = ui
-
+    console.log(Object.keys(data))
     let rooms = []
     order.map( id => {
+        console.log(rooms)
         let r = data[id]
-        let others = otherUser(r.users)
+        let others = otherUser(data[id].users)
         let hasName = ( r.name !== '' )
         let room = {
             roomID: id,
