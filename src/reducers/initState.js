@@ -1,22 +1,19 @@
 import { rms, msgs } from './testdata';
 console.log(msgs)
 let chatData = {}
+let msgData = {}
+
+msgs.map( m => { msgData[m.msgID] = m })
 
 rms.map( r => {
-	chatData[r.roomID.toString()] = {
-		...r,
-		messages: [],
+	chatData[r.roomID] = {
+		roomID: r.roomID,
+		name: r.name,
+		messages: r.messages.map( id => msgData[id] ),
 		users: r.users.filter( u => ( u !== 'david') )
 	}
 })
-
-console.log(chatData)
-msgs.map( m => {
-	console.log(m.roomID)
-	console.log(chatData[m.roomID.toString()])
-	chatData['0'].messages
-		.unshift( m )
-})
+console.log(chatData);
 
 export const chatDataInit = chatData;
 
