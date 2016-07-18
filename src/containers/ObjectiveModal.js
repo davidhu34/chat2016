@@ -9,7 +9,7 @@ const ObjectiveModal = ({ modal, objective }) => {
         {'Modal Area'}
         <button
             onClick={ () => objective({
-                roomID: '3',
+                roomID: '5',
                 name: 'espss',
                 users: ['david', 'leia', 'han']
             })}

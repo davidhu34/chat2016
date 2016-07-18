@@ -13,20 +13,20 @@ const otherUser = ( users ) => {
 
 const getRooms = ( data, ui ) => {
     let filterText = ui.roomFilter.string.toLowerCase()
-    let { order, searchingRoom } = ui
-    console.log(Object.keys(data))
+    let searching = ( ui.currentFocus === 'ROOM_SEARCH' )
+    let { order, currentRoom } = ui
+
     let rooms = []
     order.map( id => {
-        console.log(rooms)
         let r = data[id]
-        let others = otherUser(data[id].users)
+        let others = otherUser(r.users)
         let hasName = ( r.name !== '' )
+
         let room = {
             roomID: id,
             title: hasName? r.name : others
         }
-
-        if ( searchingRoom ) {
+        if ( searching ) {
             if ( r.name.toLowerCase().indexOf( filterText ) >= 0
             || others.indexOf( filterText ) >= 0 ) {
                 if ( hasName )
@@ -41,7 +41,7 @@ const getRooms = ( data, ui ) => {
             rooms.push({
                 ...room,
                 isCurrentRoom:
-                    ( id === ui.currentRoom )? true: false
+                    ( id === currentRoom )? true: false
             })
         }
     })
@@ -50,15 +50,14 @@ const getRooms = ( data, ui ) => {
 
 const mapStateToProps = ( state ) => {
     return {
-        rooms: getRooms( state.chatData, state.chatUI )
+        rooms: getRooms( state.chatData, state.chatUI ),
+        searching: state.chatUI.currentFocus === 'ROOM_SEARCH'
     }
 }
 
-const mapDispatchToProps = ( dispatch ) => {
-    return {
-        onRoomClick: (id) => dispatch( changeRoom(id) )
-    }
-}
+const mapDispatchToProps = ( dispatch ) => ({
+    onRoomClick: (id) => dispatch( changeRoom(id) )
+})
 
 const CurrentRoomList = connect(
     mapStateToProps,

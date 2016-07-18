@@ -4,21 +4,16 @@ import MessageList from '../components/MessageList'
 const getChatMessages = ( state ) => {
     return state
         .chatData[state.chatUI.currentRoom]
-        .messages
-        .map( m => ({
+        .messages.map( m => ({
             ...m,
             float:
                 ( m.user !== 'david' )? 'left': 'right'
         }))
 }
 
-const mapStateToProps = ( state ) => {
-    console.log(state.chatUI)
-    console.log(state.chatData)
-    return {
-        messages: getChatMessages( state )
-    }
-}
+const mapStateToProps = ( state ) => ({
+    messages: getChatMessages( state )
+})
 
 const CurrentMsgList = connect(
     mapStateToProps

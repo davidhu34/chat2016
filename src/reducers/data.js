@@ -26,7 +26,10 @@ const roomData = ( state, action ) => {
             }
         case 'CREATE_ROOM':
             return {
-                ...action.room,
+                roomID: action.roomID,
+                name: action.name,
+                users: action.users
+                    .filter( u => ( u !== 'david' ) ),
                 messages: []
             }
         default:
@@ -42,11 +45,10 @@ const chatData = ( state = chatDataInit, action ) => {
                 [ action.roomID ]:
                     roomData( state[action.roomID], action )
             }
-        case 'NEW_ROOM':
+        case 'CREATE_ROOM':
             return {
                 ...state,
-                [ action.roomID ]:
-                    roomData( null, action )
+                [ action.roomID ]: roomData( null, action )
             }
         default:
             return state

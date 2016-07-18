@@ -32,3 +32,10 @@ export const changeFilter = ( filter ) => {
 		filter
 	}
 }
+
+export const changeFocus = ( focus ) => {
+	return {
+		type: 'CHANGE_FOCUS',
+		focus
+	}
+}

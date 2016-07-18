@@ -8,6 +8,7 @@ const chatUI = (
         case 'NEW_MSG':
             return {
                 ...state,
+                currentFocus: 'CHAT',
                 order: [
                     action.roomID,
                     ...state.order.filter(
@@ -17,19 +18,17 @@ const chatUI = (
 		case 'CHANGE_FILTER':
 			return {
                 ...state,
-				filter: Object.assign( {},
-                    state.filter, action.filter
+                currentFocus: 'ROOM_SEARCH',
+                roomFilter: Object.assign( {},
+                    state.roomFilter, action.filter
                 )
 			}
-		case 'CHANGE_ROOM':
-			return {
-                ...state,
-				currentRoom: action.roomID
-			}
-        case 'CREATE_ROOM':
+		case 'CREATE_ROOM':
             return {
+                currentFocus: 'CHAT',
                 currentRoom: action.roomID,
-                currnetModal: '',
+                currentModal: '',
+                roomFilter: roomFilterInit,
                 order: [
                     action.roomID,
                     ...state.order
@@ -40,15 +39,17 @@ const chatUI = (
                 ...state,
                 currentModal: action.modal
             }
-        case 'SEARCH_ROOM_DISABLE':
+        case 'CHANGE_ROOM':
+			return {
+                ...state,
+                currentFocus: 'CHAT',
+                currentRoom: action.roomID
+			}
+        case 'CHANGE_FOCUS':
+            console.log(state.currentFocus)
             return {
                 ...state,
-                searchingRoom: false
-            }
-        case 'SEARCH_ROOM_ENABLE':
-            return {
-                ...state,
-                searchingRoom: true
+                currentFocus: action.focus
             }
 		default:
 			return state;

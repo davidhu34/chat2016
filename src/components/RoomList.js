@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import Room from './Room'
 
-const RoomList = ({ rooms, onRoomClick }) => (
+const RoomList = ({ rooms, searching,
+    onRoomClick
+}) => (
     <ul>
         { rooms.map( r =>
             <Room
