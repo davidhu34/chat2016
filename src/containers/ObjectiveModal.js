@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createRoom } from '../actions/index'
 
-const ObjectiveModal = ({ modal, objective }) => {
+const ObjectiveModal = ({ objective, modal }) => {
     let objText = modal
 
     return ( <div>

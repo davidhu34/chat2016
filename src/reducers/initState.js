@@ -10,7 +10,8 @@ rms.map( r => {
 		roomID: r.roomID,
 		name: r.name,
 		messages: r.messages.map( id => msgData[id] ),
-		users: r.users.filter( u => ( u !== 'david') )
+		users: r.users.filter( u => ( u !== 'david') ),
+		unsendMsg: ''
 	}
 })
 

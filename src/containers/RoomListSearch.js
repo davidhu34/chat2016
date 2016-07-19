@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { changeFocus, changeFilter } from  '../actions/index'
 
-const RoomListSearch = ({ filter,
-    focusRoomSearch, onFilterText
+const RoomListSearch = ({
+    onFilterText, focusRoomSearch, blurRoomSearch,
+    filter
 }) => {
     let input
     return ( <div>
@@ -13,6 +14,7 @@ const RoomListSearch = ({ filter,
             placeholder="search room..."
             ref={ ref => { input = ref } }
             onFocus={ focusRoomSearch }
+            onBlur={ blurRoomSearch }
             onChange={ () => {
                 onFilterText({ string: input.value })
             }}
@@ -25,6 +27,7 @@ export default connect(
         filter: state.chatUI.roomFilter
     }), dispatch => ({
         focusRoomSearch: () => dispatch( changeFocus('ROOM_SEARCH') ),
+        blurRoomSearch: () => dispatch( changeFocus('CHAT') ),
         onFilterText: (filter) => dispatch( changeFilter(filter) )
     })
 )( RoomListSearch )

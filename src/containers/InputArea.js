@@ -1,18 +1,21 @@
 import moment from 'moment'
 import React from 'react'
 import { connect } from 'react-redux'
-import { newMessage } from '../actions/index'
+import { newMessage, updateInput } from '../actions/index'
 
-const InputArea = ({ currentRoom,
-    newMessage
+const InputArea = ({
+    newMessage, onInputChange,
+    currentRoom, defaultInput
 }) => {
     let input
+
     return ( <div>
         <textarea
             placeholder="message..."
-            defaultValue=""
             ref={ ref => { input = ref } }
-        >
+            onChange={ () =>
+                onInputChange( currentRoom, input.value ) }
+        >{ defaultInput }
         </textarea>
         <button
             onClick={ () => {
@@ -32,9 +35,14 @@ const InputArea = ({ currentRoom,
 
 
 export default connect(
-    state => ({
-        currentRoom: state.chatUI.currentRoom
-    }), dispatch => ({
+    state => {
+        let id = state.chatUI.currentRoom
+        return {
+            currentRoom: id,
+            defaultInput: state.chatData[id].unsendMsg
+        }
+    }, dispatch => ({
         newMessage: (msg) => dispatch( newMessage(msg) ),
+        onInputChange: ( id, value ) => dispatch( updateInput( id, value ) )
     })
 )( InputArea )

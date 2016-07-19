@@ -8,7 +8,6 @@ const chatUI = (
         case 'NEW_MSG':
             return {
                 ...state,
-                currentFocus: 'CHAT',
                 order: [
                     action.roomID,
                     ...state.order.filter(
@@ -18,7 +17,6 @@ const chatUI = (
 		case 'CHANGE_FILTER':
 			return {
                 ...state,
-                currentFocus: 'ROOM_SEARCH',
                 roomFilter: Object.assign( {},
                     state.roomFilter, action.filter
                 )
@@ -42,7 +40,6 @@ const chatUI = (
         case 'CHANGE_ROOM':
 			return {
                 ...state,
-                currentFocus: 'CHAT',
                 currentRoom: action.roomID
 			}
         case 'CHANGE_FOCUS':

@@ -39,3 +39,10 @@ export const changeFocus = ( focus ) => {
 		focus
 	}
 }
+export const updateInput = ( roomID, val ) => {
+	return {
+		type: 'UPDATE_INPUT',
+		roomID,
+		val
+	}
+}
