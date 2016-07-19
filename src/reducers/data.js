@@ -19,7 +19,7 @@ const roomData = ( state, action ) => {
         case 'NEW_MSG':
             return {
                 ...state,
-                unsendMsg: '',
+                unsentMsg: '',
                 messages: [
                     messageData( null, action ),
                     ...state.messages
@@ -28,7 +28,7 @@ const roomData = ( state, action ) => {
         case 'UPDATE_INPUT':
             return {
                 ...state,
-                unsendMsg: action.val
+                unsentMsg: action.val
             }
         case 'CREATE_ROOM':
             return {
@@ -37,7 +37,7 @@ const roomData = ( state, action ) => {
                 users: action.users
                     .filter( u => ( u !== 'david' ) ),
                 messages: [],
-                unsendMsg: ''
+                unsentMsg: ''
             }
         default:
             return state

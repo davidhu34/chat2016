@@ -15,7 +15,8 @@ const InputArea = ({
             ref={ ref => { input = ref } }
             onChange={ () =>
                 onInputChange( currentRoom, input.value ) }
-        >{ defaultInput }
+            value={ defaultInput }
+        >
         </textarea>
         <button
             onClick={ () => {
@@ -39,7 +40,7 @@ export default connect(
         let id = state.chatUI.currentRoom
         return {
             currentRoom: id,
-            defaultInput: state.chatData[id].unsendMsg
+            defaultInput: state.chatData[id].unsentMsg
         }
     }, dispatch => ({
         newMessage: (msg) => dispatch( newMessage(msg) ),

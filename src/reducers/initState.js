@@ -11,7 +11,7 @@ rms.map( r => {
 		name: r.name,
 		messages: r.messages.map( id => msgData[id] ),
 		users: r.users.filter( u => ( u !== 'david') ),
-		unsendMsg: ''
+		unsentMsg: ''
 	}
 })
 
