@@ -2,10 +2,10 @@ import { connect } from 'react-redux'
 import { changeRoom } from '../actions/index'
 import RoomList from '../components/RoomList'
 
-const otherUser = ( users ) => {
+const otherNames = ( users ) => {
     let str = ''
     users.map( u => {
-        if ( u != 'david' )
+        if ( u !== 'david' )
             str += ( u + ', ' )
     })
     return str.substr( 0, str.length - 2 )
@@ -16,11 +16,10 @@ const getRooms = ( chat, users, ui ) => {
     let searching = ( ui.currentFocus === 'ROOM_SEARCH' )
     let { order, currentRoom } = ui
 
-    console.log(users)
     let rooms = []
     order.map( id => {
         let r = chat[id]
-        let others = otherUser(
+        let others = otherNames(
             r.users.map( uid => users[uid].name )
         )
         let hasName = ( r.name !== '' )

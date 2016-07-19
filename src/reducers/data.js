@@ -1,12 +1,11 @@
 import { chatDataInit, userDataInit } from './initState';
-//let roomTotal = Object.keys(chatDataInit).length;
-console.log(userDataInit);
+
 const messageData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
             return {
                 time: action.time,
-                user: action.user,
+                userID: action.userID,
                 message: action.message
             }
         default:

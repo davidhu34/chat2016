@@ -11,7 +11,7 @@ const ObjectiveModal = ({ objective, modal }) => {
             onClick={ () => objective({
                 roomID: '5',
                 name: 'espss',
-                users: ['david', 'leia', 'han']
+                users: ['34', '30', '31']
             })}
         >
             { objText }

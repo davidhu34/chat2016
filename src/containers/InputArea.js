@@ -23,7 +23,7 @@ const InputArea = ({
                 let message = {
                     roomID: currentRoom,
                     time: moment(),
-                    user: 'david',
+                    userID: '34',
                     message: input.value
                 }
                 newMessage(message)

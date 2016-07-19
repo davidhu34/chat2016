@@ -11,7 +11,7 @@ const chatUI = (
                 order: [
                     action.roomID,
                     ...state.order.filter(
-                        r => ( r !== action.roomID)
+                        r => ( r !== action.roomID )
                 )]
             }
 		case 'CHANGE_FILTER':
@@ -43,7 +43,6 @@ const chatUI = (
                 currentRoom: action.roomID
 			}
         case 'CHANGE_FOCUS':
-            console.log(state.currentFocus)
             return {
                 ...state,
                 currentFocus: action.focus
