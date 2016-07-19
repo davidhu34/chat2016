@@ -1,9 +1,11 @@
-import { rms, msgs } from './testdata';
+import { rms, msgs, usrs } from './testdata';
 
 let chatData = {}
 let msgData = {}
+let userData = {}
 
 msgs.map( m => { msgData[m.msgID] = m } )
+usrs.map( u => { userData[u.userID] = u } )
 
 rms.map( r => {
 	chatData[r.roomID] = {
@@ -29,3 +31,5 @@ export const chatUIInit = {
 	searchingRoom: false,
 	order: [ '2', '1', '3' ]
 }
+
+export const userDataInit = userData

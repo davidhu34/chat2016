@@ -11,15 +11,18 @@ const otherUser = ( users ) => {
     return str.substr( 0, str.length - 2 )
 }
 
-const getRooms = ( data, ui ) => {
+const getRooms = ( chat, users, ui ) => {
     let filterText = ui.roomFilter.string.toLowerCase()
     let searching = ( ui.currentFocus === 'ROOM_SEARCH' )
     let { order, currentRoom } = ui
 
+    console.log(users)
     let rooms = []
     order.map( id => {
-        let r = data[id]
-        let others = otherUser(r.users)
+        let r = chat[id]
+        let others = otherUser(
+            r.users.map( uid => users[uid].name )
+        )
         let hasName = ( r.name !== '' )
 
         let room = {
@@ -50,7 +53,7 @@ const getRooms = ( data, ui ) => {
 
 const mapStateToProps = ( state ) => {
     return {
-        rooms: getRooms( state.chatData, state.chatUI ),
+        rooms: getRooms( state.chatData, state.userData, state.chatUI ),
         searching: state.chatUI.currentFocus === 'ROOM_SEARCH'
     }
 }

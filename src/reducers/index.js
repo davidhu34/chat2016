@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 import chatUI from './ui'
-import chatData from './data'
+import { chatData, userData } from './data'
 
 const chatApp = combineReducers({
     chatUI,
-    chatData
+    chatData,
+    userData
 })
 
 export default chatApp

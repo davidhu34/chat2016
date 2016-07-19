@@ -1,6 +1,6 @@
-import { chatDataInit } from './initState';
+import { chatDataInit, userDataInit } from './initState';
 //let roomTotal = Object.keys(chatDataInit).length;
-
+console.log(userDataInit);
 const messageData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
@@ -35,7 +35,7 @@ const roomData = ( state, action ) => {
                 roomID: action.roomID,
                 name: action.name,
                 users: action.users
-                    .filter( u => ( u !== 'david' ) ),
+                    .filter( u => ( u !== '34' ) ),
                 messages: [],
                 unsentMsg: ''
             }
@@ -63,4 +63,11 @@ const chatData = ( state = chatDataInit, action ) => {
     }
 }
 
-export default chatData
+const userData = ( state = userDataInit, action ) => {
+    switch ( action.type ) {
+        default:
+            return state
+    }
+}
+
+export { chatData, userData }

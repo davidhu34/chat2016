@@ -6,8 +6,9 @@ const getChatMessages = ( state ) => {
         .chatData[state.chatUI.currentRoom]
         .messages.map( m => ({
             ...m,
+            username: state.userData[m.userID].name,
             float:
-                ( m.user !== 'david' )? 'left': 'right'
+                ( m.userID !== '34' )? 'left': 'right'
         }))
 }
 
