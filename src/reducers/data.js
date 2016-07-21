@@ -1,9 +1,11 @@
+import { v4 } from 'uuid'
 import { chatDataInit, userDataInit } from './initState';
 
 const messageData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':
             return {
+                msgID: v4(),
                 time: action.time,
                 userID: action.userID,
                 message: action.message

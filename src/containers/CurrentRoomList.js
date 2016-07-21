@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import moment from 'moment'
 import { changeRoom } from '../actions/index'
 import RoomList from '../components/RoomList'
 
@@ -38,7 +39,8 @@ const getRooms = ( chat, users, ui ) => {
         } else {
             if ( r.messages.length !== 0 ) {
                 room.preview = r.messages[0].message
-                room.lastUpdate = r.messages[0].time.format('LT')
+                room.lastUpdate = moment( r.messages[0].time )
+                                .format('LT')
             }
             rooms.push({
                 ...room,
