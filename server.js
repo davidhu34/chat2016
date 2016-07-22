@@ -1,15 +1,17 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+import express from 'express'
+import path from 'path'
+import compression from 'compression'
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true
-}).listen(3000, 'localhost', function (err, result) {
-  if (err) {
-    return console.log(err);
-  }
+let app = express()
+app.use( compression() )
 
-  console.log('Listening at http://localhost:3000/');
-});
+app.use( express.static( path.join(__dirname, 'public')))
+
+app.get( '*', (req, res) => {
+    res.sendFile( path.join(__dirname, 'public', 'index.html'))
+})
+
+const PORT = process.env.PORT || 8080
+app.listen( PORT, () => {
+    console.log( 'Production Express server running at localhost:' + PORT )
+})

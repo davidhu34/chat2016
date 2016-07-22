@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js",
+    "start": "node devServer.js",
+    "start:dev": "webpack-dev-server --inline --content-base public --history-api-fallback",
+    "start:prod": "webpack && node server.js",
     "lint": "eslint src"
   },
   "devDependencies": {
