@@ -69,10 +69,4 @@ const CurrentRoomList = withRouter( connect(
     mapDispatchToProps
 )( RoomList ) )
 
-CurrentRoomList.propTypes = {
-    params: PropTypes.shape({
-        roomID: PropTypes.string
-    })
-}
-
 export default CurrentRoomList

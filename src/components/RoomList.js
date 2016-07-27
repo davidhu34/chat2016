@@ -19,7 +19,7 @@ const RoomList = ({ onRoomClick,
 
 RoomList.propTypes = {
     rooms: PropTypes.arrayOf(
-        Room.propTypes ).isRequired,
+        Room.propTypes ).isRequired
 }
 
 export default RoomList
