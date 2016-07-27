@@ -1,5 +1,8 @@
+import { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import moment from 'moment'
+
 import { changeRoom } from '../actions/index'
 import RoomList from '../components/RoomList'
 
@@ -12,10 +15,10 @@ const otherNames = ( users ) => {
     return str.substr( 0, str.length - 2 )
 }
 
-const getRooms = ( chat, users, ui ) => {
+const getRooms = ( chat, users, ui, currentRoom ) => {
     let filterText = ui.roomFilter.string.toLowerCase()
     let searching = ( ui.currentFocus === 'ROOM_SEARCH' )
-    let { order, currentRoom } = ui
+    let { order } = ui
 
     let rooms = []
     order.map( id => {
@@ -31,7 +34,7 @@ const getRooms = ( chat, users, ui ) => {
         }
         if ( searching ) {
             if ( r.name.toLowerCase().indexOf( filterText ) >= 0
-            || others.indexOf( filterText ) >= 0 ) {
+                || others.indexOf( filterText ) >= 0 ) {
                 if ( hasName )
                     room.preview = others
                 rooms.push(room)
@@ -52,20 +55,24 @@ const getRooms = ( chat, users, ui ) => {
     return rooms
 }
 
-const mapStateToProps = ( state ) => {
-    return {
-        rooms: getRooms( state.chatData, state.userData, state.chatUI ),
-        searching: state.chatUI.currentFocus === 'ROOM_SEARCH'
-    }
-}
+const mapStateToProps = ( state, { params } ) => ({
+    rooms: getRooms( state.chatData, state.userData, state.chatUI, params.roomID||'1' ),
+    searching: state.chatUI.currentFocus === 'ROOM_SEARCH'
+})
 
 const mapDispatchToProps = ( dispatch ) => ({
     onRoomClick: (id) => dispatch( changeRoom(id) )
 })
 
-const CurrentRoomList = connect(
+const CurrentRoomList = withRouter( connect(
     mapStateToProps,
     mapDispatchToProps
-)( RoomList )
+)( RoomList ) )
+
+CurrentRoomList.propTypes = {
+    params: PropTypes.shape({
+        roomID: PropTypes.string
+    })
+}
 
 export default CurrentRoomList

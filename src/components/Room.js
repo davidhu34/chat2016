@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 const Room = ({
-    onClick, title,
+    onClick, title, roomID,
     preview = null, lastUpdate = null, isCurrentRoom = false
 }) => {
     const optionalInfo = (info) => (
@@ -21,17 +22,18 @@ const Room = ({
     </div> )
 
     return (
-        <li onClick = { onClick }
+        <Link to= { roomID }
         >
             { room }
             { roomInfo }
-        </li>
+        </Link>
     )
 }
 
 Room.propTypes = {
     onClick: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
+    roomID: PropTypes.string.isRequired,
     preview: PropTypes.string,
     lastUpdate: PropTypes.string,
     isCurrentRoom: PropTypes.bool

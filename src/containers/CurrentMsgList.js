@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import MessageList from '../components/MessageList'
 
-const getChatMessages = ( state ) => {
+const getChatMessages = ( state, currentRoom ) => {
     return state
-        .chatData[state.chatUI.currentRoom]
+        .chatData[currentRoom]
         .messages.map( m => ({
             ...m,
             username: state.userData[m.userID].name,
@@ -12,12 +13,12 @@ const getChatMessages = ( state ) => {
         }))
 }
 
-const mapStateToProps = ( state ) => ({
-    messages: getChatMessages( state )
+const mapStateToProps = ( state, { params } ) => ({
+    messages: getChatMessages( state, params.roomID )
 })
 
-const CurrentMsgList = connect(
+const CurrentMsgList = withRouter( connect(
     mapStateToProps
-)( MessageList )
+)( MessageList ) )
 
 export default CurrentMsgList

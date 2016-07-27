@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react'
 import RoomListArea from './RoomListArea'
 import ChatArea from './ChatArea'
 import ObjectiveModal from '../containers/ObjectiveModal'
 
-export default class App extends Component {
-    render () {
-        return (
-            <div>
-                <h1>Hello, Fuckers</h1>
-                <div>
-                    <RoomListArea />
-                    <ChatArea />
-                    <ObjectiveModal />
-                </div>
-            </div>
-        )
-    }
-}
+const App = () => (
+    <div>
+        <h1>Hello, Fuckers</h1>
+        <div>
+            <RoomListArea />
+            <ChatArea />
+            <ObjectiveModal />
+        </div>
+    </div>
+)
+
+export default App
