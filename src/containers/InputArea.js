@@ -1,6 +1,7 @@
 import moment from 'moment'
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { newMessage, updateInput } from '../actions/index'
 
 const InputArea = ({
@@ -35,9 +36,9 @@ const InputArea = ({
 }
 
 
-export default connect(
-    state => {
-        let id = state.chatUI.currentRoom
+export default withRouter( connect(
+    ( state, { params } ) => {
+        let id = params.roomID
         return {
             currentRoom: id,
             defaultInput: state.chatData[id].unsentMsg
@@ -46,4 +47,4 @@ export default connect(
         newMessage: (msg) => dispatch( newMessage(msg) ),
         onInputChange: ( id, value ) => dispatch( updateInput( id, value ) )
     })
-)( InputArea )
+)( InputArea ) )
