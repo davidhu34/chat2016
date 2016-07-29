@@ -26,7 +26,7 @@ export const roomFilterInit = {
 
 export const chatUIInit = {
 	currentFocus: 'CHAT',
-	currentRoom: '2',
+//	currentRoom: '2',
 	currentModal: '',
 	searchingRoom: false,
 	order: [ '2', '1', '3' ]

@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 import throttle from 'lodash/throttle'
 import { loadState, saveState } from './localStorage'
-import chatApp from './reducers/index';
+import chatApp from './reducers';
 
 const freshStore = () => {
     return createStore( chatApp )

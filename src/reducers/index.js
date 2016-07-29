@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import chatUI from './ui'
-import { chatData, userData } from './data'
+import chatUI, {
+    getRoomsUI } from './ui'
+import { chatData, userData,
+    getUnsentMsg as getUM,
+    getChatAreaTitle as getCAT,
+    getRoomsData } from './data'
 
 const chatApp = combineReducers({
     chatUI,
@@ -9,3 +13,12 @@ const chatApp = combineReducers({
 })
 
 export default chatApp
+
+export const getUnsentMsg = ( state, id ) =>
+    getUM( state, id )
+
+export const getChatAreaTitle = ( state, id ) =>
+    getCAT( state, id )
+
+export const getRooms = ( state, currentRoom ) =>
+    getRoomsData( state, getRoomsUI( state ), currentRoom )

@@ -24,7 +24,7 @@ const chatUI = (
 		case 'CREATE_ROOM':
             return {
                 currentFocus: 'CHAT',
-                currentRoom: action.roomID,
+//                currentRoom: action.roomID,
                 currentModal: '',
                 roomFilter: roomFilterInit,
                 order: [
@@ -37,11 +37,11 @@ const chatUI = (
                 ...state,
                 currentModal: action.modal
             }
-        case 'CHANGE_ROOM':
+/*        case 'CHANGE_ROOM':
 			return {
                 ...state,
                 currentRoom: action.roomID
-			}
+			}*/
         case 'CHANGE_FOCUS':
             return {
                 ...state,
@@ -54,3 +54,12 @@ const chatUI = (
 }
 
 export default chatUI
+
+export const getRoomsUI = ( state ) => {
+    let ui = state.chatUI
+    return {
+        filterText: ui.roomFilter.string.toLowerCase(),
+        searching:  ( ui.currentFocus === 'ROOM_SEARCH' ),
+        order:      ui.order
+    }
+}

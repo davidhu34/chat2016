@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { withRouter } from 'react-router'
+import { getChatAreaTitle } from '../reducers'
 
 const ChatAreaTitle = ({ title, status }) => (
     <div>
@@ -9,24 +10,7 @@ const ChatAreaTitle = ({ title, status }) => (
     </div>
 )
 
-export default connect(
-    state => {
-        let room = state
-            .chatData[state.chatUI.currentRoom]
-        let otherUsers = room.users
-            .filter( u => u !== '34' )
-            .map( u => state.userData[u] )
-
-        let title = room.name
-        let status = ''
-        if ( otherUsers.length === 1 ) {
-            title = otherUsers[0].name
-        } else {
-            otherUsers.map( u => {
-                status += u.name + ', '
-            })
-            status = status.slice( 0, -2 )
-        }
-        return { title, status }
-    }
-)( ChatAreaTitle )
+export default withRouter( connect(
+    ( state, { params } ) =>
+        getChatAreaTitle( state, params.roomID )
+)( ChatAreaTitle ) )
