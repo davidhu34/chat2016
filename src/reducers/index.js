@@ -4,6 +4,7 @@ import chatUI, {
 import { chatData, userData,
     getUnsentMsg as getUM,
     getChatAreaTitle as getCAT,
+    getChatMessages as getCM,
     getRoomsData } from './data'
 
 const chatApp = combineReducers({
@@ -22,3 +23,6 @@ export const getChatAreaTitle = ( state, id ) =>
 
 export const getRooms = ( state, currentRoom ) =>
     getRoomsData( state, getRoomsUI( state ), currentRoom )
+
+export const getChatMessages = ( state, currentRoom ) =>
+    getCM( state, currentRoom )

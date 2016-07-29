@@ -78,8 +78,8 @@ export const getUnsentMsg = ( state, id ) =>
     state.chatData[id].unsentMsg
 
 export const getChatAreaTitle = ( state, id ) => {
-    let room = state.chatData[id]
-    let otherUsers = room.users
+    const room = state.chatData[id]
+    const otherUsers = room.users
         .filter( u => u !== '34' )
         .map( u => state.userData[u] )
 
@@ -108,17 +108,17 @@ const otherNames = ( users ) => {
 }
 
 export const getRoomsData = ( state, ui, currentRoom ) => {
-    let { filterText, searching, order } = ui
+    const { filterText, searching, order } = ui
 
-    let rooms = []
+    const rooms = []
     order.map( id => {
-        let r = state.chatData[id]
-        let others = otherNames(
+        const r = state.chatData[id]
+        const hasName = ( r.name !== '' )
+        const others = otherNames(
             r.users.map( uid => state.userData[uid].name )
         )
-        let hasName = ( r.name !== '' )
 
-        let room = {
+        const room = {
             roomID: id,
             title: hasName? r.name : others
         }
@@ -143,4 +143,15 @@ export const getRoomsData = ( state, ui, currentRoom ) => {
         }
     })
     return { rooms, searching }
+}
+
+export const getChatMessages = ( state, currentRoom ) => {
+    return state
+        .chatData[currentRoom]
+        .messages.map( m => ({
+            ...m,
+            username: state.userData[m.userID].name,
+            float:
+                ( m.userID !== '34' )? 'left': 'right'
+        }))
 }

@@ -3,10 +3,26 @@ import throttle from 'lodash/throttle'
 import { loadState, saveState } from './localStorage'
 import chatApp from './reducers';
 
-const freshStore = () => {
-    return createStore( chatApp )
+const logDispatch = ( store ) => {
+    const rawDispatch = store.dispatch
+    if ( !console.group )
+        return rawDispatch( action )
+    else return ( action ) => {
+        console.group( action.type )
+        console.log( '%c prev state', 'color:grey', store.getState() )
+        console.log( '%c action', 'color:blue', action )
+        const returnValue = rawDispatch( action )
+        console.log( '%c next state', 'color:green', store.getState() )
+        console.groupEnd( action.type )
+        return returnValue
+    }
 }
 
+const freshStore = () => {
+    const store = createStore( chatApp )
+    store.dispatch = logDispatch( store )
+    return store
+}
 
 const localStorageStore = () => {
     const persistedState = loadState()
@@ -14,6 +30,7 @@ const localStorageStore = () => {
         chatApp,
         persistedState
     )
+    lss.dispatch = logDispatch( lss )
     lss.subscribe( throttle( () => {
         saveState( lss.getState() )
     }, 1000 ))

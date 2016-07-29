@@ -56,7 +56,7 @@ const chatUI = (
 export default chatUI
 
 export const getRoomsUI = ( state ) => {
-    let ui = state.chatUI
+    const ui = state.chatUI
     return {
         filterText: ui.roomFilter.string.toLowerCase(),
         searching:  ( ui.currentFocus === 'ROOM_SEARCH' ),
