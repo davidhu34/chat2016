@@ -5,20 +5,18 @@ const Room = ({
     onClick, title, roomID,
     preview = null, lastUpdate = null, isCurrentRoom = false
 }) => {
-    const optionalInfo = (info) => (
-        ( info )? (
-            <span> {info} </span>
-        ) : <span/>
+    const optionalInfo = ( info ) => (
+        info ? <span> { info } </span>
+            : <span />
     )
 
-    let room = ( isCurrentRoom )? (
-        <b> {title} </b>
-    ) : (
-        <span>{title}</span>
-    )
+    let room = isCurrentRoom
+        ? <b> { title } </b>
+        : <span> { title } </span>
+
     let roomInfo = ( <div>
-        {optionalInfo(preview)}
-        {optionalInfo(lastUpdate)}
+        { optionalInfo(preview) }
+        { optionalInfo(lastUpdate) }
     </div> )
 
     return (

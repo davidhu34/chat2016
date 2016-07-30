@@ -21,7 +21,7 @@ app.get( '*', (req, res, next) => {
 
 const server = http.createServer( app )
 const io = new socketio(server)
-//app.use( '/', api(io) )
+app.use( '/', api(io) )
 
 
 server.listen( port )
