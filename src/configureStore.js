@@ -3,34 +3,36 @@ import throttle from 'lodash/throttle'
 import { loadState, saveState } from './localStorage'
 import chatApp from './reducers';
 
-const supportPromiseForDispatch = ( store ) => {
-    const rawDispatch = store.dispatch
-    return ( action ) => {
-        return ( typeof action.then === 'function' )? (
-            action.then( rawDispatch )
-        ) : rawDispatch( action )
-    }
-}
+const supportPromise = ( store ) => ( next ) =>
+    ( action ) =>
+        ( typeof action.then === 'function' )? (
+            action.then( next )
+        ) : next( action )
 
-const logDispatch = ( store ) => {
-    const rawDispatch = store.dispatch
-    return ( !console.group )? (
-        rawDispatch( action )
+const logger = ( store ) => ( next ) =>
+    ( !console.group )? (
+        next
     ) : ( ( action ) => {
         console.group( action.type )
         console.log( '%c prev state', 'color:grey', store.getState() )
         console.log( '%c action', 'color:blue', action )
-        const returnValue = rawDispatch( action )
+        const returnValue = next( action )
         console.log( '%c next state', 'color:green', store.getState() )
         console.groupEnd( action.type )
         return returnValue
     })
+
+const wrapDispatchMiddleware = ( middlewares, store ) => {
+    middlewares.slice().reverse().forEach( middleware =>
+        store.dipatch = middleware( store )( store.dispatch )
+    )
 }
+
 
 const freshStore = () => {
     const store = createStore( chatApp )
-    store.dispatch = logDispatch( store )
-    store.dispatch = supportPromiseForDispatch( store )
+    const middlewares = [ supportPromise, logger ]
+    wrapDispatchMiddleware( middlewares, store )
     return store
 }
 
