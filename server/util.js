@@ -1,22 +1,5 @@
-//var debug = require('debug')('REM:server');
-import app, { io } from '.server/app'
-import http from 'http'
-
-// Get port from environment and store in Express.
-var port = normalizePort( process.env.PORT || '5000' );
-app.set( 'port', port );
-
-// Create HTTP server.
-const server = http.createServer( app )
-io.listen( server )
-
-// Listen on provided port, on all network interfaces.
-server.listen( port )
-server.on( 'error', onError )
-server.on( 'listening', onListening )
-
 // Normalize a port into a number, string, or false.
-const normalizePort = ( val ) => {
+export const normalizePort = ( val ) => {
     const port = parseInt( val, 10 )
 
     if ( isNaN( port ) )
@@ -29,7 +12,7 @@ const normalizePort = ( val ) => {
 }
 
 // Event listener for HTTP server "error" event.
-const onError = ( error ) => {
+export const onError = () => ( error ) => {
     if ( error.syscall !== 'listen' )
         throw error
 
@@ -53,7 +36,7 @@ const onError = ( error ) => {
 }
 
 // Event listener for HTTP server "listening" event.
-const onListening = () => {
+export const onListening = ( server ) => () => {
     const addr = server.address()
     const bind = ( typeof addr === 'string' )
         ? 'pipe ' + addr
