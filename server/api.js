@@ -6,6 +6,7 @@ export default ( io ) => {
     const router = Router()
 
     router.get( '/yo', (req, res, next) => {
+        console.log('yo')
         res.send( 'yo' )
     })
 

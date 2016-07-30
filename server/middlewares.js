@@ -21,6 +21,7 @@ export default ( app ) => {
     app.use( cookieParser() )
     app.use( compression({}) )
 
+/*
     app.use( (req, res, next) => {
         let err = new Error('Not Found')
         err.status = 404
@@ -41,5 +42,5 @@ export default ( app ) => {
             message:    err.message,
             error:      {}
         })
-    })
+    })*/
 }

@@ -75,10 +75,10 @@ const userData = ( state = userDataInit, action ) => {
 export { chatData, userData }
 
 export const getUnsentMsg = ( state, id ) =>
-    state.chatData[id].unsentMsg
+    state.chatData[id||'1'].unsentMsg
 
 export const getChatAreaTitle = ( state, id ) => {
-    const room = state.chatData[id]
+    const room = state.chatData[id || '1']
     const otherUsers = room.users
         .filter( u => u !== '34' )
         .map( u => state.userData[u] )
@@ -147,7 +147,7 @@ export const getRoomsData = ( state, ui, currentRoom ) => {
 
 export const getChatMessages = ( state, currentRoom ) => {
     return state
-        .chatData[currentRoom]
+        .chatData[currentRoom||'1']
         .messages.map( m => ({
             ...m,
             username: state.userData[m.userID].name,
