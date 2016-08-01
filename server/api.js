@@ -12,7 +12,7 @@ export default ( io ) => {
 
     io.on('connection', ( socket ) => {
     	console.log('connect client')
-        console.log(socket)
+        io.emit('soee', { data: 'data' } )
     })
     return router
 }

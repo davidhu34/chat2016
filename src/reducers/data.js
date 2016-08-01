@@ -1,7 +1,14 @@
 import moment from 'moment'
 import { v4 } from 'uuid'
 import { chatDataInit, userDataInit } from './initState';
+import io from 'socket.io-client'
 
+const socket = io('http://localhost:5000')
+socket.on( 'connect', () => {
+    socket.on( 'soee', ({ data }) => {
+        console.log( data )
+    })
+})
 const messageData = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MSG':

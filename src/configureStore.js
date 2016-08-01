@@ -5,9 +5,15 @@ import throttle from 'lodash/throttle'
 
 import { loadState, saveState } from './localStorage'
 import chatApp from './reducers';
-
+/*
+const thunk ( store ) => ( next ) => ( action ) =>
+    typeof action === 'function'
+        ? action( store.dispatch )
+        : next( action )
+*/
 const freshStore = () => {
     const middlewares = [ promise ]
+    //const middlewares = [ thunk ]
     middlewares.push( createLogger() )
     return createStore(
         chatApp,
@@ -17,6 +23,7 @@ const freshStore = () => {
 
 const localStorageStore = () => {
     const middlewares = [ promise ]
+    //const middlewares = [ thunk ]
     middlewares.push( createLogger() )
     const persistedState = loadState()
     const lss = createStore(
