@@ -8,12 +8,14 @@ import express  from 'express'
 import { normalizePort, onError, onListening } from './util'
 import applyMiddlewares from './middlewares'
 import api from './api'
+import { models } from './db'
 
 
 const app = express()
 const port = normalizePort( process.env.PORT || '5000' )
 app.set( 'port', port )
 app.use( express.static( path.join( __dirname, '..', 'public' ) ) )
+
 applyMiddlewares( app )
 app.get( '*', (req, res, next) => {
     res.sendFile( path.join( __dirname, '..', 'index.html' ) )
