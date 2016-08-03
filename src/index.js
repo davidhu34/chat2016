@@ -16,4 +16,6 @@ render(
     </Router>
   </Provider>,
   document.getElementById('root')
-)
+).then(()=>{
+store.dispatch({type:'yoyo'})
+})

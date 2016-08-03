@@ -4,17 +4,21 @@ import createLogger from 'redux-logger'
 import throttle from 'lodash/throttle'
 
 import { loadState, saveState } from './localStorage'
-import chatApp from './reducers';
+import connection from './connection'
+import chatApp from './reducers'
 /*
 const thunk ( store ) => ( next ) => ( action ) =>
     typeof action === 'function'
         ? action( store.dispatch )
         : next( action )
 */
+
+
 const freshStore = () => {
     const middlewares = [ promise ]
     //const middlewares = [ thunk ]
     middlewares.push( createLogger() )
+
     return createStore(
         chatApp,
         applyMiddleware( ...middlewares )
@@ -22,9 +26,10 @@ const freshStore = () => {
 }
 
 const localStorageStore = () => {
-    const middlewares = [ promise ]
-    //const middlewares = [ thunk ]
+    const middlewares = [ promise ]// || [ thunk ]
+    //middlewares.push( connection )
     middlewares.push( createLogger() )
+    //middlewares.push( socketConnection )
     const persistedState = loadState()
     const lss = createStore(
         chatApp,

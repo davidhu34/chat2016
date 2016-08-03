@@ -12,12 +12,11 @@ export default ( io, models ) => {
 
     io.on('connection', ( socket ) => {
     	console.log('connect client')
-        socket.emit('soee', { data: 'data' } )
         socket.on( 'INIT_DATA', ( req ) => {
             console.log('init data req')
             User.find( {}, ( err, users ) => {
                 console.log( users )
-                io.emit( 'INIT_DATA', {
+                io.emit( 'INIT_USER_DATA', {
                     users
                 })
             }).then( ( data ) => {

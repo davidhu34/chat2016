@@ -1,8 +1,8 @@
 import { rms, msgs, usrs } from './testdata';
 
 let chatData = {}
-let msgData = {}
 let userData = {}
+let msgData = {}
 
 msgs.map( m => { msgData[m.msgID] = m } )
 usrs.map( u => { userData[u.userID] = u } )
