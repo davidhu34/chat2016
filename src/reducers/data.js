@@ -6,7 +6,11 @@ import io from 'socket.io-client'
 const socket = io('http://localhost:5000')
 socket.on( 'connect', () => {
     socket.on( 'soee', ({ data }) => {
-        console.log( data )
+        console.log( 'soee: ', data )
+        socket.emit( 'INIT_DATA', {req:'req'})
+        socket.on( 'INIT_DATA', ({ users }) => {
+            console.log( 'init: ', users )
+        })
     })
 })
 const messageData = ( state, action ) => {
