@@ -1,8 +1,12 @@
 import ensureLogin from 'connect-ensure-login'
 import { Router } from 'express'
 
+const successLog = ( data ) => {
+    console.log( 'on query success:\n', data )
+}
+
 export default ( io, models ) => {
-    const { User } = models
+    const { User, Room, Message } = models
     const authenticated = ensureLogin.ensureLoggedIn('/login')
     const router = Router()
     router.get( '/yo', (req, res, next) => {
@@ -14,14 +18,23 @@ export default ( io, models ) => {
     	console.log('connect client')
         socket.on( 'INIT_DATA', ( req ) => {
             console.log('init data req')
+
             User.find( {}, ( err, users ) => {
-                console.log( users )
                 io.emit( 'INIT_USER_DATA', {
                     users
                 })
-            }).then( ( data ) => {
-                console.log( 'onsuccess',data )
-            })
+            }).then( successLog )
+            Room.find( {}, ( err, users ) => {
+                io.emit( 'INIT_USER_DATA', {
+                    users
+                })
+            }).then( successLog )
+            Message.find( {}, ( err, users ) => {
+                io.emit( 'INIT_USER_DATA', {
+                    users
+                })
+            }).then( successLog )
+
         })
     })
     return router

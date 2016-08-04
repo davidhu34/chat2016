@@ -5,14 +5,17 @@ import path     from 'path'
 import socketio from 'socket.io'
 import express  from 'express'
 
+import { PORT, MONGOURI } from './config'
 import { normalizePort, onError, onListening } from './util'
 import applyMiddlewares from './middlewares'
 import api from './api'
-import { models } from './db'
+import mongo from './db'
 
 
 const app = express()
-const port = normalizePort( process.env.PORT || '5000' )
+const port = normalizePort( process.env.PORT || PORT )
+const models = mongo( MONGOURI )
+
 app.set( 'port', port )
 app.use( express.static( path.join( __dirname, '..', 'public' ) ) )
 
@@ -27,5 +30,5 @@ app.use( '/', api( io, models ) )
 
 
 server.listen( port )
-server.on( 'error', onError() )
-server.on( 'listening', onListening(server) )
+server.on( 'error', onError( port ) )
+server.on( 'listening', onListening( server ) )

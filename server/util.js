@@ -12,13 +12,13 @@ export const normalizePort = ( val ) => {
 }
 
 // Event listener for HTTP server "error" event.
-export const onError = () => ( error ) => {
+export const onError = ( port ) => ( error ) => {
     if ( error.syscall !== 'listen' )
         throw error
-
+        console.log(port)
     const bind = ( typeof port === 'string' )
-        ? 'Pipe ' + port
-        : 'Port ' + port
+         ? ( 'Pipe ' + port )
+         : ( 'Port ' + port )
 
     // handle specific listen errors with friendly messages
     switch ( error.code ) {

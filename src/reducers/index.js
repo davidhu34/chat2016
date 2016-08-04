@@ -5,12 +5,14 @@ import { chatData, userData,
     getUnsentMsg as getUM,
     getChatAreaTitle as getCAT,
     getChatMessages as getCM,
-    getRoomsData } from './data'
+    getRoomsData as getRD } from './data'
+import networkStatus from './network'
 
 const chatApp = combineReducers({
     chatUI,
     chatData,
-    userData
+    userData,
+    networkStatus
 })
 
 export default chatApp
@@ -22,7 +24,7 @@ export const getChatAreaTitle = ( state, id ) =>
     getCAT( state, id )
 
 export const getRooms = ( state, currentRoom ) =>
-    getRoomsData( state, getRoomsUI( state ), currentRoom )
+    getRD( state, getRoomsUI( state ), currentRoom )
 
 export const getChatMessages = ( state, currentRoom ) =>
     getCM( state, currentRoom )
