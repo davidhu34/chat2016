@@ -42,20 +42,24 @@ socket.on( 'connect', () => {
 })
 const initPromise = Promise.all([
     getUserInit,
-    getRoomInit,
-    getMsgInit
-])
-msgs.map( m => { msgData[m.msgID] = m } )
-usrs.map( u => { userData[u.userID] = u } )
-
-rms.map( r => {
-	chatData[r.roomID] = {
-		roomID: r.roomID,
-		name: r.name,
-		messages: r.messages.map( id => msgData[id] ),
-		users: r.users.filter( u => ( u !== '34') ),
-		unsentMsg: ''
-	}
+    getMsgInit,
+    getRoomInit
+]).then( ( values ) => {
+    const userData = {}
+    const msgData = {}
+    const chatData = {}
+    values[0].map( u => { userData[ u.userID ] = u } )
+    values[1].map( m => { msgData[ m.msgID ] = m } )
+    values[2].map( r => {
+    	chatData[ r.roomID ] = {
+            unsentMsg:'',
+    		roomID:   r.roomID,
+    		name:     r.name,
+    		messages: r.messages.map( id => msgData[id] ),
+    		users:    r.users.filter( u => ( u !== '34') )
+    	}
+    })
+    return chatData
 })
 
 export default ( store ) => ( next ) =>
@@ -63,12 +67,11 @@ export default ( store ) => ( next ) =>
         switch ( action.type ) {
             case 'INIT':
                 return initPromise
-                    .then( ( values ) => {
+                    .then( ( chatData ) => {
                         next({
-                            userInit:   values[0],
-                            roomInit:   values[1],
-                            msgInit:    values[2],
-                        ...action })
+                            ...action,
+                            data: chatData
+                        })
                     })
             default:
                 return next( action )
