@@ -24,14 +24,14 @@ export default ( io, models ) => {
                     users
                 })
             }).then( successLog )
-            Room.find( {}, ( err, users ) => {
-                io.emit( 'INIT_USER_DATA', {
-                    users
+            Room.find( {}, ( err, rooms ) => {
+                io.emit( 'INIT_ROOM_DATA', {
+                    rooms
                 })
             }).then( successLog )
-            Message.find( {}, ( err, users ) => {
-                io.emit( 'INIT_USER_DATA', {
-                    users
+            Message.find( {}, ( err, messages ) => {
+                io.emit( 'INIT_MSG_DATA', {
+                    messages
                 })
             }).then( successLog )
 

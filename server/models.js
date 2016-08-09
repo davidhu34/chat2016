@@ -14,10 +14,10 @@ export default ( mongoose ) => {
     }))
     mongoose.model( 'Message', new Schema({
         _id: String,
+        time: String,
         room: String,
         user: String,
-        message: String,
-        time: String
+        message: String
     }))
 
     return {
