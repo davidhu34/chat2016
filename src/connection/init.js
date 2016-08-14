@@ -50,6 +50,6 @@ export default ( socket ) => {
         		users:    r.users.filter( u => ( u !== '34') )
         	}
         })
-        return chatData
+        return { chatData, userData }
     })
 }

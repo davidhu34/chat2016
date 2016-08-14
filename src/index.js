@@ -17,4 +17,4 @@ render(
   </Provider>,
   document.getElementById('root')
 )
-store.dispatch({type:'yoyo'})
+store.dispatch({type:'INIT'})

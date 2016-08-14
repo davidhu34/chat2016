@@ -60,6 +60,8 @@ const chatData = ( state = chatDataInit, action ) => {
                 ...state,
                 [ action.roomID ]: roomData( null, action )
             }
+        case 'INIT':
+            return action.chatData
         default:
             return state
     }
@@ -67,6 +69,8 @@ const chatData = ( state = chatDataInit, action ) => {
 
 const userData = ( state = userDataInit, action ) => {
     switch ( action.type ) {
+        case 'INIT':
+            return action.userData
         default:
             return state
     }

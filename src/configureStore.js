@@ -4,7 +4,7 @@ import createLogger from 'redux-logger'
 import throttle from 'lodash/throttle'
 
 import { loadState, saveState } from './localStorage'
-import connection from './connection'
+import connection from './connection/index'
 import chatApp from './reducers'
 /*
 const thunk ( store ) => ( next ) => ( action ) =>

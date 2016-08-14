@@ -19,9 +19,10 @@ export default ( store ) => ( next ) => ( action ) => {
     switch ( action.type ) {
         case 'INIT':
             return initPromise
-                .then( ( data ) => {
+                .then( ({ chatData, userData }) => {
                     next({
-                        data,
+                        chatData,
+                        userData,
                         ...action
                     })
                 })
