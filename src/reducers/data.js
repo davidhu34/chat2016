@@ -1,6 +1,8 @@
 import moment from 'moment'
 import { v4 } from 'uuid'
-import { chatDataInit, userDataInit } from './initState';
+//import { chatDataInit, userDataInit } from './initState';
+const chatDataInit = {}
+const userDataInit = {}
 
 const messageData = ( state, action ) => {
     switch ( action.type ) {
@@ -78,28 +80,33 @@ const userData = ( state = userDataInit, action ) => {
 
 export { chatData, userData }
 
-export const getUnsentMsg = ( state, id ) =>
-    state.chatData[id||'1'].unsentMsg
+export const getUnsentMsg = ( state, id ) => {
+    const room = state.chatData[id]
+    if ( room ) return room.unsentMsg
+    else return ''
+}
 
 export const getChatAreaTitle = ( state, id ) => {
-    const room = state.chatData[id || '1']
-    const otherUsers = room.users
-        .filter( u => u !== '34' )
-        .map( u => state.userData[u] )
+    const room = state.chatData[id]
+    if ( room !== undefined ) {
+        const otherUsers = room.users
+            .filter( u => u !== '57a09353f36d283aff2c595e' )
+            .map( u => state.userData[u] )
 
-    let title = room.name
-    let status = ''
+        let title = room.name
+        let status = ''
 
-    if ( otherUsers.length === 1 ) {
-        title = otherUsers[0].name
-    } else {
-        otherUsers.map( u => {
-            status += u.name + ', '
-        })
-        status = status.slice( 0, -2 )
-    }
+        if ( otherUsers.length === 1 ) {
+            title = otherUsers[0].name
+        } else {
+            otherUsers.map( u => {
+                status += u.name + ', '
+            })
+            status = status.slice( 0, -2 )
+        }
 
-    return { title, status }
+        return { title, status }
+    } else return { title: 'Laaoding', status: 'none' }
 }
 
 const otherNames = ( users ) => {
@@ -150,12 +157,15 @@ export const getRoomsData = ( state, ui, currentRoom ) => {
 }
 
 export const getChatMessages = ( state, currentRoom ) => {
-    return state
-        .chatData[currentRoom||'1']
-        .messages.map( m => ({
-            ...m,
-            username: state.userData[m.userID].name,
-            float:
-                ( m.userID !== '34' )? 'left': 'right'
-        }))
+    const room = state.chatData[ currentRoom ]
+    if ( room !== undefined )
+        return state
+            .chatData[ currentRoom ]
+            .messages.map( m => ({
+                ...m,
+                username: state.userData[m.userID].name,
+                float:
+                    ( m.userID !== '34' )? 'left': 'right'
+            }))
+    else return []
 }

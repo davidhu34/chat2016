@@ -28,7 +28,7 @@ export const chatUIInit = {
 	currentFocus: 'CHAT',
 	currentModal: '',
 	searchingRoom: false,
-	order: [ '2', '1', '3' ]
+	order: []
 }
 
 export const userDataInit = userData

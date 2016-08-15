@@ -5,6 +5,13 @@ const chatUI = (
     action
  ) => {
 	switch ( action.type ) {
+        case 'INIT':
+            return {
+                ...state,
+                order: ['57a0922af36d283aff2c5921',
+            	'57a0950af36d283aff2c5996',
+            	'57a0955af36d283aff2c59a7']
+            }
         case 'NEW_MSG':
             return {
                 ...state,
