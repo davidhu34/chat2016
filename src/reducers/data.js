@@ -143,7 +143,7 @@ export const getRoomsData = ( state, ui, currentRoom ) => {
         } else {
             if ( r.messages.length !== 0 ) {
                 room.preview = r.messages[0].message
-                room.lastUpdate = moment( r.messages[0].time )
+                room.lastUpdate = moment( Number( r.messages[0].time ) )
                                 .format('LT')
             }
             rooms.push({

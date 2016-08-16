@@ -20,6 +20,7 @@ export default ( store ) => ( next ) => ( action ) => {
         case 'INIT':
             return initPromise
                 .then( ({ chatData, userData }) => {
+                    console.log('init then')
                     next({
                         chatData,
                         userData,

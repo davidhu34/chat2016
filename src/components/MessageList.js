@@ -5,6 +5,7 @@ const MessageList = ({ messages }) => (
     <ul>
         { messages.map( msg =>
             <Message
+                key={ msg.msgID }
                 {...msg}
             />
         )}
